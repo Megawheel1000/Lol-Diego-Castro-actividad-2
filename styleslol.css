@@ -1,0 +1,330 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-gold: #e2c46f; 
+    --color-dark: #0a0a0f; 
+    --color-mid: #14141d;  
+    --color-light: #fff;
+    --color-accent: #f7d774; 
+}
+
+body {
+    background-color: var(--color-dark);
+    font-family: 'Montserrat', sans-serif; 
+    color: var(--color-light);
+    line-height: 1.6;
+}
+
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 20px 0;
+    background: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+}
+
+.logo {
+    display: none; 
+}
+
+.links {
+    display: flex; 
+    gap: 40px;
+}
+
+.links a {
+    color: var(--color-light);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.links a:hover {
+    color: var(--color-accent);
+    transform: translateY(-3px);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    position: absolute; 
+    right: 5%;
+    top: 25px;
+}
+
+.hamburger span {
+    height: 3px;
+    width: 25px;
+    background-color: var(--color-accent);
+    margin: 4px 0;
+    transition: transform 0.3s;
+}
+
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: url('https://universe.leagueoflegends.com/images/map_of_runeterra.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+    padding-top: 60px; 
+    color: var(--color-light);
+}
+
+.hero h1 {
+    text-align: center;
+    font-size: clamp(2.5em, 5vw, 5em);
+    color: var(--color-gold);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 15px #d1a746;
+}
+
+.hero p {
+    text-align: center;
+    color: #c4c4c4;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+
+.section {
+    padding: 40px 80px;
+    min-height: 200px;
+}
+
+.section-dark {
+    background-color: var(--color-mid);
+}
+
+.section-title {
+    font-size: 2.4rem;
+    margin-bottom: 30px;
+    color: var(--color-gold);
+    text-shadow: 0 0 10px #b59441;
+    text-align: center; 
+}
+
+.section-text {
+    max-width: 900px;
+    margin: 15px auto;
+    font-size: 1.1rem;
+    text-align: justify;
+}
+
+
+.champ-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.champ {
+    background-color: var(--color-mid);
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid #1f1f2e;
+    transition: 0.3s;
+    cursor: pointer; 
+}
+
+.champ img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+}
+
+.champ:hover {
+    transform: scale(1.05);
+    border-color: #a88732;
+    box-shadow: 0 0 15px #a88732;
+}
+
+.champ p {
+    margin-top: 10px;
+    font-weight: 600;
+    color: var(--color-light);
+}
+
+.role-grid, .skins-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    text-align: center;
+}
+
+.role-item, .skin-item {
+    background-color: #0d1a26;
+    padding: 25px;
+    border-radius: 12px;
+    border: 2px solid var(--color-gold);
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.role-item h3, .skin-item h3 {
+    color: var(--color-gold);
+    margin-top: 0;
+    font-size: 1.4rem;
+}
+
+footer {
+    background-color: #000000;
+    text-align: center;
+    padding: 30px 10%;
+    border-top: 5px solid var(--color-gold);
+    font-size: 0.9em;
+}
+
+#championModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: #111;
+    padding: 30px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 15px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 0 30px rgba(226, 196, 111, 0.4);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modal-content img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-title {
+    color: var(--color-gold);
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.modal-role {
+    font-weight: 600;
+    color: var(--color-accent);
+    margin-bottom: 15px;
+}
+
+.modal-story {
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--color-accent);
+    color: var(--color-dark);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.close-btn:hover {
+    background: #ffe799;
+    transform: scale(1.05);
+}
+
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s;
+}
+.visible {
+    opacity: 1;
+}
+
+@media (max-width: 900px) {
+    .section {
+        padding: 40px 5%; 
+    }
+
+    .navbar {
+        justify-content: space-between;
+        padding: 15px 5%;
+    }
+
+    .logo {
+        display: block;
+    }
+
+    .links {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        background-color: var(--color-dark);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        padding: 10px 0;
+        transition: max-height 0.3s ease-out;
+        max-height: 0;
+        overflow: hidden;
+    }
+
+    .links.open {
+        display: flex;
+        max-height: 300px;
+    }
+
+    .links a {
+        margin: 10px 0;
+    }
+
+    .hamburger {
+        display: flex; 
+        position: static;
+    }
+
+    .hero h1 {
+        font-size: 3em;
+    }
+}
